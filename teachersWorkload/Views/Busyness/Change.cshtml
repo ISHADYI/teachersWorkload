@@ -1,0 +1,42 @@
+﻿@model teachersWorkload.Models.Subject
+
+<div class="container mt-4">
+    <h4>@(Model.Id == 0 ? "Добавление" : "Редактирование") предмета</h4>
+    <hr />
+    <form asp-action="Change">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label class="form-label">Название</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Часы (6-72)</label>
+            <input asp-for="Hours" type="number" class="form-control" />
+            <span asp-validation-for="Hours" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Группа (например, 15)</label>
+            <input asp-for="GroupNumber" class="form-control" />
+            <span asp-validation-for="GroupNumber" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Семестр (1-8)</label>
+            <input asp-for="Semester" type="number" class="form-control" />
+            <span asp-validation-for="Semester" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <a asp-action="Index" class="btn btn-link">Назад</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
